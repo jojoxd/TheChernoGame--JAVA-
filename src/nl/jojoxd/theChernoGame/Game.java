@@ -13,7 +13,7 @@ import nl.jojoxd.theChernoGame.graphics.Screen;
 import nl.jojoxd.theChernoGame.input.Keyboard;
 
 public class Game extends Canvas implements Runnable {
-	// continue @ http://www.youtube.com/watch?v=-XclQ0Tp0d4&list=ELshNxV9QFUOo (ep 30 :D)
+	// continue @ http://www.youtube.com/watch?v=HqM0HLt7gJo&list=ELshNxV9QFUOo (ep 32 :D)
 	private static final long serialVersionUID = 1L;
 	public static int width = 300;
 	public static int height = 192;

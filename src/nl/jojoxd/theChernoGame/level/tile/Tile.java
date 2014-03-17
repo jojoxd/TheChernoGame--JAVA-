@@ -3,7 +3,7 @@ package nl.jojoxd.theChernoGame.level.tile;
 import nl.jojoxd.theChernoGame.graphics.Screen;
 import nl.jojoxd.theChernoGame.graphics.Sprite;
 
-public class Tile {
+public abstract class Tile {
 	
 	public int x, y;
 	public Sprite sprite;
