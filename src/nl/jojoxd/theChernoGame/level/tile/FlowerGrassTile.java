@@ -3,9 +3,9 @@ package nl.jojoxd.theChernoGame.level.tile;
 import nl.jojoxd.theChernoGame.graphics.Screen;
 import nl.jojoxd.theChernoGame.graphics.Sprite;
 
-public class GrassTile extends Tile {
+public class FlowerGrassTile extends Tile {
 
-	public GrassTile(Sprite sprite) {
+	public FlowerGrassTile(Sprite sprite) {
 		super(sprite);
 	}
 	

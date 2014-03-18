@@ -2,6 +2,7 @@ package nl.jojoxd.theChernoGame;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -9,11 +10,14 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
+import nl.jojoxd.theChernoGame.entity.mob.Player;
 import nl.jojoxd.theChernoGame.graphics.Screen;
 import nl.jojoxd.theChernoGame.input.Keyboard;
+import nl.jojoxd.theChernoGame.level.Level;
+import nl.jojoxd.theChernoGame.level.RandomLevel;
 
 public class Game extends Canvas implements Runnable {
-	// continue @ http://www.youtube.com/watch?v=HqM0HLt7gJo&list=ELshNxV9QFUOo (ep 32 :D)
+	// continue @ https://www.youtube.com/watch?v=KL9Qz_d5MyM&list=ELshNxV9QFUOo (ep 47 :D)
 	private static final long serialVersionUID = 1L;
 	public static int width = 300;
 	public static int height = 192;
@@ -23,6 +27,9 @@ public class Game extends Canvas implements Runnable {
 	private Thread gameThread;
 	private JFrame frame;
 	private Keyboard key;
+	private RandomLevel level;
+	private Player player;
+	
 	private boolean running = false;
 
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -37,6 +44,9 @@ public class Game extends Canvas implements Runnable {
 		frame = new JFrame();
 		screen = new Screen(width, height);
 		key = new Keyboard();
+		level = new RandomLevel(64, 64);
+		player = new Player(key);
+		
 		addKeyListener(key);
 	}
 
@@ -89,13 +99,9 @@ public class Game extends Canvas implements Runnable {
 	public void update() {
 		// this will run @ 60x/second
 		key.update();
-		if(key.up == true) y--;
-		if(key.down == true) y++;
-		if(key.left == true) x--;
-		if(key.right == true) x++;
+		player.update();
 	}
 	
-	int x = 0, y = 0;
 	public void render() {
 		// this will run @ *x/second (== the fps)
 		BufferStrategy bs = getBufferStrategy();
@@ -106,13 +112,18 @@ public class Game extends Canvas implements Runnable {
 
 		
 		screen.clear();
-		screen.render(x , y);
+		int xScroll = player.x - screen.width / 2;
+		int yScroll = player.y - screen.height / 2;
+		level.render(xScroll, yScroll, screen);
+		player.render(screen);
+		
 		for(int i = 0; i < pixels.length; i++){
 			pixels[i] = screen.pixels[i];
 		}
 		
 		Graphics g = bs.getDrawGraphics();
 		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+		g.setFont(new Font("Verdana", 0, 50));
 		g.dispose();
 		bs.show();
 	}

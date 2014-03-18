@@ -9,6 +9,10 @@ public abstract class Tile {
 	public Sprite sprite;
 	
 	public static Tile grass = new GrassTile(Sprite.grass);
+	public static Tile flowerGrass = new FlowerGrassTile(Sprite.flowerGrass);
+	
+	// a void tile, a static tile with no info and a single color.
+	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
 	
 	public Tile(Sprite sprite){
 		this.sprite = sprite;
