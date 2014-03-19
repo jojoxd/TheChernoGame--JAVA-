@@ -10,6 +10,8 @@ public abstract class Tile {
 	
 	public static Tile grass = new GrassTile(Sprite.grass);
 	public static Tile flowerGrass = new FlowerGrassTile(Sprite.flowerGrass);
+	public static Tile stone1 = new StoneTile(Sprite.stone1);
+	public static Tile stone2 = new StoneTile(Sprite.stone2);
 	
 	// a void tile, a static tile with no info and a single color.
 	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
