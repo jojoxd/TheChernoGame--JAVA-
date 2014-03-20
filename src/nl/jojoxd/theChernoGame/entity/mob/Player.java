@@ -25,6 +25,12 @@ public class Player extends Mob{
 		if(input.left) xa--;
 		if(input.right) xa++;
 		
+		// RUN FORREST RUN
+		if(input.up && input.shift) ya -= 1.25;
+		if(input.down && input.shift) ya += 1.25;
+		if(input.left && input.shift) xa -= 1.25;
+		if(input.right && input.shift) xa += 1.25;
+		
 		if(xa != 0 || ya != 0) move(xa, ya);
 	}
 	
